@@ -6,5 +6,6 @@ The short corridor problem is an example from Sutton, Barto: Introduction to Rei
 
 - numpy: https://www.numpy.org/
 - matplotlib: https://matplotlib.org/
+- scipy: https://www.scipy.org/
 
 
