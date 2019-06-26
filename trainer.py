@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Corridor module
+"""Trainer module
 
 This module provides the tools for learning the probability. 
 """
