@@ -3,9 +3,7 @@
 
 This module provides the game setting. 
 """
-
 from numpy import random
-
 
 class CorridorGame:
     def __init__(self):
