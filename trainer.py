@@ -18,10 +18,10 @@ class Trainer:
 
     def estG(self, R, gamma, T):
         """
-        Returns vector of estimated returns for each time step.
+        Returns a vector of estimated returns for each time step.
         """
         if T < 2:
-            print("The rajectory is not valid!")
+            print("The trajectory is not valid!")
             sys.exit(1)
         else:
             G = np.zeros(T)
@@ -50,5 +50,5 @@ class Trainer:
         gradient = self.gradient(p, A)
         gammas = [self.gamma**i for i in range(T)]
 
-        prob += self.alpha * np.dot(gammas, np.multiply(gradient, estG))
+        prob += self.alpha * np.dot(gammas, gradient*estG)
         return prob
