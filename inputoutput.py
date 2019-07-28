@@ -55,7 +55,7 @@ def plotter(steps, p_history, export, staff):
     Plot and save learning curves.
     """
     fig, (ax1, ax2) = plt.subplots(2, 1)
-    w = savgol_filter(steps, 1001, 1)
+    w = savgol_filter(steps, 101, 1)
 
     ax1.plot(steps)
     ax1.plot(w)

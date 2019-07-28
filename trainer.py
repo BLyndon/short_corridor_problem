@@ -8,9 +8,11 @@ import sys
 
 
 class Trainer:
-    def __init__(self, gamma, alpha):
-        self.alpha = alpha
-        self.gamma = gamma
+    def __init__(self, staff):
+        self.alpha = staff['learning_rate']
+        self.gamma = staff['discount_factor']
+        if staff['agent'] == 'basel':
+            self.alphabase = staff['alpha_base']
         print("\n learning...")
 
     def __del__(self):
@@ -45,13 +47,6 @@ class Trainer:
         A = tau[:, 1]
         R = tau[:, 2]
 
-        # prob = p
-        # estG = self.estG(R, self.gamma, T)
-        # gradient = self.gradient(p, A)
-        # gammas = [self.gamma**i for i in range(T)]
-
-        # prob += self.alpha * np.dot(gammas, gradient*estG)
-
         prob = p
         estG = self.estG(R, self.gamma, T)
 
@@ -60,3 +55,29 @@ class Trainer:
 
         return prob
         
+    def PG_baseline(self, p, w, tau):
+        """
+        Policy update via policy gradient with baseline.
+        """
+        tau = np.array(tau)
+        T = len(tau)
+        A = tau[:, 1]
+        R = tau[:, 2]
+
+        prob = p
+        base = w
+        estG = self.estG(R, self.gamma, T)
+
+        delta = estG - self.value(base)
+
+        for t in range(T):
+            base += self.alphabase * delta[t] * self.value(base)
+            prob += self.alpha * self.gamma**t * delta[t] * self.gradient(prob, A[t])
+
+        return prob, base
+
+    def value(self, w):
+        return w
+
+    def dval(self, w):
+        return 1

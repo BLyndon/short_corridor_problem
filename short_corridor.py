@@ -7,19 +7,25 @@ import sys
 
 
 ########### --- initialisation --- ###########
-steps, tau, p_history, staff = [], [], [], {}
+steps, tau, p_history, pbase_history, staff = [], [], [], [], {}
 
-staff['ini_probability'] = np.random.rand()
-staff['num_episodes'] = int(1e+6)
-staff['batch_size'] = 100
-staff['discount_factor'] = .99
-staff['learning_rate'] = 5e-7
+staff['agent'] = 'basel'
+#staff['agent'] = 'reinf'
+
+staff['ini_probability'] = 0.55 #np.random.rand()
+staff['num_episodes'] = int(1e5)
+staff['batch_size'] = 1
+staff['discount_factor'] = .9
+staff['learning_rate'] = 1e-6
 staff['n_mean'] = int(staff['num_episodes']/10)
+if staff['agent'] == 'basel':
+    w = - np.random.rand()
+    staff['alpha_base'] = 1e-6
 
 p = staff['ini_probability']
 
 corridor = cr.CorridorGame()
-training = tr.Trainer(staff['discount_factor'], staff['learning_rate'])
+training = tr.Trainer(staff)
 
 ########### --- run --- ###########
 for i in range(staff['num_episodes']):
@@ -28,14 +34,17 @@ for i in range(staff['num_episodes']):
     tau.append(corridor.trajectory)
     p_history.append(p)
 
-    # REINFORCEMENT method
     if ((i+1) % staff['batch_size']) == 0:
         for k in range(staff['batch_size']):
-            p = training.REINFORCEMENT(p, tau[k])
+            if staff['agent'] == 'reinf':
+                p = training.REINFORCEMENT(p, tau[k])
+            elif staff['agent'] == 'basel':
+                p, w = training.PG_baseline(p, w, tau[k])
         tau = []
     if p > 1 or p < 0:
         print("p ran out of bounds!")
         print("p = " + str(p))
+        io.plotter(steps, p_history, False, staff)
         sys.exit(1)
 
     corridor.reset()
