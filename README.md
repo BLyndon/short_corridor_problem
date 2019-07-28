@@ -1,6 +1,6 @@
 # Short Corridor Problem
 
-The short corridor problem is an example given in Sutton, Barto: Introduction to Reinforcement Learning. It is solved using a vanilla policy gradient algorithm.
+The short corridor problem is an example given in *Sutton, Barto: Introduction to Reinforcement Learning*. It is solved using a vanilla policy gradient algorithm.
 
 - PDF: http://incompleteideas.net/book/the-book.html
 
@@ -40,4 +40,6 @@ o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o
 o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o
 
 ![alt text](data/Figure_1.png "plot")
+
+The total amount of steps for each sampled trajectory is shown in blue in the upper panel. The orange line indicates the mean reward averaged with help of the *Savitzky-Golay-Filter*. The lower diagram shows the convergence of the randomly initialized probability to the expected value *p* = 0.59.
 
