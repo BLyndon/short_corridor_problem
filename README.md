@@ -2,6 +2,8 @@
 
 The short corridor problem is an example given in Sutton, Barto: Introduction to Reinforcement Learning. It is solved using a vanilla policy gradient algorithm.
 
+- PDF: http://incompleteideas.net/book/the-book.html
+
 ## Requirements
 
 - numpy: https://www.numpy.org/
