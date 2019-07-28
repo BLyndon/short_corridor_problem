@@ -14,14 +14,14 @@ agents = ['reinforcement', 'baseline']
 staff['agent'] = agents[1]
 
 staff['ini_probability'] = np.random.rand()
-staff['num_episodes'] = int(5e3)
-staff['batch_size'] = 1
-staff['discount_factor'] = .99
+staff['num_episodes'] = int(1e4)
+staff['batch_size'] = 10
+staff['discount_factor'] = .97
 staff['learning_rate'] = 1e-5
 staff['n_mean'] = int(staff['num_episodes']/10)
 if staff['agent'] == 'baseline':
-    w = -4.9
-    staff['alpha_base'] = 1e-6
+    w = 0
+    staff['alpha_base'] = 1e-4
 
 p = staff['ini_probability']
 

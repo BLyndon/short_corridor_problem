@@ -69,7 +69,7 @@ def plotter(steps, p_history, export, staff):
     ax2.set_ylabel('prob. of right action')
     ax2.set_xlabel('episodes')
 
-    title = "gamma=" + str(staff['discount_factor']) + ",  alpha=" + str(
+    title = str(staff['agent']) + ", gamma=" + str(staff['discount_factor']) + ",  alpha=" + str(
         staff['learning_rate']) + ",  batch size=" + str(staff['batch_size'])
 
     fig.suptitle(title,
