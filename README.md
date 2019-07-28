@@ -1,6 +1,6 @@
 # Short Corridor Problem
 
-The short corridor problem is an example given in *Sutton, Barto: Introduction to Reinforcement Learning*. It is solved using a vanilla policy gradient algorithm and a policy gradient with baseline.
+The short corridor problem is an example given in *Sutton, Barto: Introduction to Reinforcement Learning*. It is solved using a vanilla policy gradient algorithm and a policy gradient algorithm with baseline.
 
 - PDF: http://incompleteideas.net/book/the-book.html
 
