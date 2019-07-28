@@ -8,6 +8,16 @@ The short corridor problem is an example given in Sutton, Barto: Introduction to
 - matplotlib: https://matplotlib.org/
 - scipy: https://www.scipy.org/
 
+## The model
+
+The underlying action space *A*={left, right} is described by a random variable *a*=0,1. The policy is parametrised by the Bernoulli distribution
+
+![alt text](imgs/policy.png "policy")
+
+In this parametrisation, the parameter *θ*∈(0,1) is equivalent to the probability *p* of choosing *a*=1. Given a batch of trajectories, the update rule for the parameter is given by  
+
+![alt text](imgs/updaterule.png "update rule")
+
 
 ## Results
 
@@ -27,5 +37,5 @@ o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o
 
 o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o
 
-![alt text](data/Figure_1.png "Title")
+![alt text](data/Figure_1.png "plot")
 
