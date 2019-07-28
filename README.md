@@ -15,17 +15,22 @@ The short corridor problem is an example given in *Sutton, Barto: Introduction t
 The underlying action space *A*={left, right} is described by a random variable *a*=0,1. The policy is parametrised by the Bernoulli distribution
 
 ![alt text](imgs/policy.png "policy")
-
-In this parametrisation, the parameter *θ*∈(0,1) is equivalent to the probability *p* of choosing *a*=1. Given a batch of trajectories, the update rule for the parameter is given by  
+In this parametrisation, the parameter *θ*∈(0,1) is equivalent to the probability *p* of choosing *a*=1. Given a batch of trajectories, the basic update rule for the parameter is given by  
 
 ![alt text](imgs/updaterule.png "update rule")
+
+The update rule with baseline is given by
+
+![alt text](imgs/updatebaseline.png "update rule baseline")
+
+where the estimate of the state value function was chosen to be a single number.
 
 
 ## Results
 
 Expected:  
-final probability  ≈ 0.59  
-mean reward &ensp;&ensp;≈ -11.6 
+probability ≈ 0.59  
+mean reward ≈ -11.6 
 
 o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o
 
@@ -42,5 +47,5 @@ o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o
 
 ![alt text](data/baseline.png "plot")
 
-The total amount of steps for each sampled trajectory is shown in blue in the upper panel. The orange line indicates the mean reward averaged with help of the *Savitzky-Golay-Filter*. The lower diagram shows the convergence of the randomly initialized probability to the expected value *p* = 0.59.
+The total amount of steps for each sampled trajectory is shown in blue in the upper panel. The orange line indicates the mean reward averaged with help of the *Savitzky-Golay-Filter*. The lower diagram shows the convergence of the randomly initialised probability to the expected value *p* = 0.59.
 
