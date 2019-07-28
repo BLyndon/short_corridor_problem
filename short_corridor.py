@@ -9,17 +9,18 @@ import sys
 ########### --- initialisation --- ###########
 steps, tau, p_history, pbase_history, staff = [], [], [], [], {}
 
-staff['agent'] = 'basel'
-#staff['agent'] = 'reinf'
+agents = ['reinforcement', 'baseline']
 
-staff['ini_probability'] = 0.55 #np.random.rand()
-staff['num_episodes'] = int(1e5)
+staff['agent'] = agents[1]
+
+staff['ini_probability'] = np.random.rand()
+staff['num_episodes'] = int(5e3)
 staff['batch_size'] = 1
-staff['discount_factor'] = .9
-staff['learning_rate'] = 1e-6
+staff['discount_factor'] = .99
+staff['learning_rate'] = 1e-5
 staff['n_mean'] = int(staff['num_episodes']/10)
-if staff['agent'] == 'basel':
-    w = - np.random.rand()
+if staff['agent'] == 'baseline':
+    w = -4.9
     staff['alpha_base'] = 1e-6
 
 p = staff['ini_probability']
@@ -36,9 +37,9 @@ for i in range(staff['num_episodes']):
 
     if ((i+1) % staff['batch_size']) == 0:
         for k in range(staff['batch_size']):
-            if staff['agent'] == 'reinf':
+            if staff['agent'] == 'reinforcement':
                 p = training.REINFORCEMENT(p, tau[k])
-            elif staff['agent'] == 'basel':
+            elif staff['agent'] == 'baseline':
                 p, w = training.PG_baseline(p, w, tau[k])
         tau = []
     if p > 1 or p < 0:

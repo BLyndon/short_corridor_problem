@@ -14,15 +14,16 @@ def print_staff(staff, p_history, steps):
     Print parameter, initial values and results to console.
     """
     print(25*"o-" + "o\n")
-    print("  Initial Probability:\t" + str(staff['ini_probability']))
-    print("  Discount Factor:\t" + str(staff['discount_factor']))
-    print("  Batch Size:\t\t" + str(staff['batch_size']))
-    print("  Number of Episodes:\t" + str(staff['num_episodes']))
+    print("  Agent:\t\t\t" + str(staff['agent']))
+    print("  Initial Probability:\t\t" + str(staff['ini_probability']))
+    print("  Discount Factor:\t\t" + str(staff['discount_factor']))
+    print("  Batch Size:\t\t\t" + str(staff['batch_size']))
+    print("  Number of Episodes:\t\t" + str(staff['num_episodes']))
     print("  Learning Rate:\t\t" + str(staff['learning_rate']))
 
     print("  final mean probability:\t" +
           str(np.mean(p_history[-staff['n_mean']:])))
-    print("  final mean reward:\t" +
+    print("  final mean reward:\t\t" +
           str(-np.mean(np.array(steps)[-staff['n_mean']:])))
     print("\n" + 25*"o-" + "o")
     print("\n")

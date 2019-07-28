@@ -11,7 +11,7 @@ class Trainer:
     def __init__(self, staff):
         self.alpha = staff['learning_rate']
         self.gamma = staff['discount_factor']
-        if staff['agent'] == 'basel':
+        if staff['agent'] == 'baseline':
             self.alphabase = staff['alpha_base']
         print("\n learning...")
 
@@ -71,7 +71,7 @@ class Trainer:
         delta = estG - self.value(base)
 
         for t in range(T):
-            base += self.alphabase * delta[t] * self.value(base)
+            base += self.alphabase * delta[t] * self.dval(base)
             prob += self.alpha * self.gamma**t * delta[t] * self.gradient(prob, A[t])
 
         return prob, base
