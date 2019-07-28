@@ -45,10 +45,18 @@ class Trainer:
         A = tau[:, 1]
         R = tau[:, 2]
 
+        # prob = p
+        # estG = self.estG(R, self.gamma, T)
+        # gradient = self.gradient(p, A)
+        # gammas = [self.gamma**i for i in range(T)]
+
+        # prob += self.alpha * np.dot(gammas, gradient*estG)
+
         prob = p
         estG = self.estG(R, self.gamma, T)
-        gradient = self.gradient(p, A)
-        gammas = [self.gamma**i for i in range(T)]
 
-        prob += self.alpha * np.dot(gammas, gradient*estG)
+        for t in range(T):
+            prob += self.alpha * self.gamma**t * estG[t] * self.gradient(prob, A[t]) 
+
         return prob
+        
