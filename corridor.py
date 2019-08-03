@@ -7,14 +7,17 @@ from numpy import random
 
 class CorridorGame:
     def __init__(self):
-        self.steps = 0
-        self.state = 0
-        self.trajectory = []
-        self.reward = -1
+        self.reset()
         print("\n##### game started!\n")
 
     def __del__(self):
         print("\n##### game finished!\n")
+
+    def __action(self, p):
+        return 1 if random.rand() < p else 0
+
+    def __reward(self, state):
+        return -1 if state < 4 else 0
 
     def get_steps(self):
         """
@@ -30,36 +33,32 @@ class CorridorGame:
         self.state = 0
         self.trajectory = []
 
-    def step(self, p):
+    def __step(self, p):
         """
-        Do a single step.
+        Do a single step and save history.
         """
-        action = 0
-        rand = random.rand()
+        action = self.__action(p)
         temp_state = self.state
 
         if self.state == 0:
-            if rand < p:
+            if action == 1:
                 self.state += 1
-                action = 1
         elif self.state == 1:
-            if rand < p:
+            if action == 1:
                 self.state -= 1
-                action = 1
             else:
                 self.state += 1
         else:
-            if rand < p:
+            if action == 1:
                 self.state += 1
-                action = 1
             else:
                 self.state -= 1
-
-        self.trajectory.append([temp_state, action, self.reward])
+        
+        self.trajectory.append([temp_state, action, self.__reward(self.state)])
 
     def run(self, p):
         """
         Step through the corridor until state 3 is reached.
         """
         while self.state < 3:
-            self.step(p)
+            self.__step(p)
